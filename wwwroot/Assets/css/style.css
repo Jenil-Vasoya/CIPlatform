@@ -1,3 +1,6 @@
+
+
+
 .headtxt {
     position: absolute;
     top: 643px;
@@ -38,9 +41,6 @@
 
 }
 
-.img {
-    height: 100vh;
-}
 
 .row {
     --bs-gutter-x: 0;
@@ -56,9 +56,14 @@
     text-align: center;
 }
 
-@media only screen and (min-width:992px) {
-    .policy {
-        padding-bottom: 75px;
+.img-fluid {
+    height: 120vh;
+}
+
+
+@media only screen and (max-width:991px) {
+    .img-fluid{
+       height : auto;
     }
 
 }

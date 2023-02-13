@@ -6,4 +6,6 @@ namespace CIPlatform.Models
 
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
     }
+
+    
 }

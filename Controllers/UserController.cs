@@ -19,7 +19,7 @@ namespace CIPlatform.Controllers
             return View();
         }
 
-        public ActionResult ResetPassword()
+        public ActionResult ForgotPassword()
         {
             return View();
         }
