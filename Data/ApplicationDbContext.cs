@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CIPlatform.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace CIPlatform.Data
@@ -10,6 +11,7 @@ namespace CIPlatform.Data
 
         }
 
-        public DbSet<Model> Entities { get; set; }
+        public DbSet<Admin> Admin { get; set; }
+        public DbSet<User> User { get; set; }
     }
 }
