@@ -3,6 +3,8 @@ using CIPlatform.Models;
 using CIPlatform.Views.User;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
+using System.Data;
 
 namespace CIPlatform.Controllers
 {
@@ -21,20 +23,25 @@ namespace CIPlatform.Controllers
         }
 
         public IActionResult Login()
-        {
+         {
             
             return View();
         }
 
         [HttpPost]
-        [Route("Login")]
         public IActionResult Login(Login objLogin)
         {
-            User user = _userRepository.Login(objLogin);
-            if (user == null)
-                return NotFound();
+            SqlConnection objConn = new SqlConnection("Server=MRKHEDUT;Initial Catalog=CI Platform;Trusted_Connection=True;TrustServerCertificate=True;");
 
-            return Ok(user);
+            SqlCommand com = new SqlCommand("PR_User_SelectByUserNamePassword", objConn);
+            objConn.Open();
+                com.CommandType = CommandType.StoredProcedure;
+                com.Parameters.AddWithValue("@Email", objLogin.Email);
+                com.Parameters.AddWithValue("@Password", objLogin.Password);
+                com.ExecuteNonQuery();
+                objConn.Close();
+                return RedirectToAction("Index","Admin");
+            
         }
 
         public IActionResult Register()
