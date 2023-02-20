@@ -63,7 +63,7 @@ namespace CIPlatform.Controllers
             {
                 _db.User.Add(objUser);
                 _db.SaveChanges();
-                return RedirectToAction("Index", "Admin");
+                return RedirectToAction("MissionGrid", "Home");
             }
             return RedirectToAction("Login","User");
         }

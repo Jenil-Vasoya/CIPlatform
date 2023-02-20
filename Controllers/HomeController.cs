@@ -26,7 +26,22 @@ namespace CIPlatform.Controllers
         {
             return View();
         }
-
+        public IActionResult Header1()
+        {
+            return View();
+        }
+        public IActionResult MissionGrid()
+        {
+            return View();
+        }
+        public IActionResult MissionList()
+        {
+            return View();
+        }
+        public IActionResult MissionEmpty()
+        {
+            return View();
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

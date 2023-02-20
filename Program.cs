@@ -27,6 +27,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Header}/{id?}");
+    pattern: "{controller=Home}/{action=MissionGrid}/{id?}");
 
 app.Run();
