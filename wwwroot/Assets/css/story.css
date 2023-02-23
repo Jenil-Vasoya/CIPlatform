@@ -1,0 +1,84 @@
+﻿
+
+@media(max-width:1100px) {
+
+    #btnfonbkimg {
+        width: 26vw;
+    }
+}
+
+
+
+
+
+
+
+
+
+.bgimgformainSL {
+    background-repeat: no-repeat;
+    background-size: 100vw 320px;
+}
+
+.backforimgSL {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding-top: 100px;
+    padding-bottom: 50px;
+}
+
+@media(max-width:568px) {
+    .backforimgSL {
+        padding-top: 16px;
+    }
+}
+
+/*style*/
+.howerimg {
+    position: relative;
+    width: 100%;
+}
+
+
+
+.overlayforhower {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: black;
+    opacity: 0.4;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    -webkit-transform: scale(0);
+    -ms-transform: scale(0);
+    transform: scale(0);
+    -webkit-transition: .3s ease;
+    transition: .3s ease;
+}
+
+.howerimg:hover .overlayforhower {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+}
+
+.howertext {
+    color: white;
+    font-size: 20px;
+    opacity: 5;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+
+
+
