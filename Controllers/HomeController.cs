@@ -18,7 +18,7 @@ namespace CIPlatform.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult StoryList()
         {
             return View();
         }
