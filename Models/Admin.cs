@@ -1,21 +1,23 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Numerics;
+﻿using System;
+using System.Collections.Generic;
 
-namespace CIPlatform.Models
+namespace CIPlatform.Models;
+
+public partial class Admin
 {
-    public class Admin
-    {
-        [Key]
-        public Int64 AdminID { get; set; }
-        public  string FirstName { get; set; }
-        public string LastName { get; set; }
+    public long AdminId { get; set; }
 
-        [Required]
-        public string Email { get; set; }
-        [Required]
-        public string Password { get; set; }
+    public string? FirstName { get; set; }
 
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
+    public string? LastName { get; set; }
 
-    }
+    public string Email { get; set; } = null!;
+
+    public string Password { get; set; } = null!;
+
+    public DateTime CreatedAt { get; set; }
+
+    public DateTime? UpdatedAt { get; set; }
+
+    public DateTime? DeletedAt { get; set; }
 }

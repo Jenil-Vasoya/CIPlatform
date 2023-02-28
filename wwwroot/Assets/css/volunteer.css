@@ -1,4 +1,9 @@
-﻿
+﻿@media screen and (max-width: 325px) {
+    .container {
+        height: fit-content;
+        width: fit-content;
+    }
+}
 
 
 .endtext1 {

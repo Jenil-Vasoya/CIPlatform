@@ -10,9 +10,9 @@ namespace CIPlatform.Controllers
 {
     public class UserController : Controller
     {
-        private readonly ApplicationDbContext _db;
+        private readonly CiPlatformContext _db;
         
-        public UserController(ApplicationDbContext db)
+        public UserController(CiPlatformContext db)
         {
             _db = db;
         }
@@ -29,19 +29,13 @@ namespace CIPlatform.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(Login objLogin)
+        public IActionResult Login(User objLogin)
         {
-            SqlConnection objConn = new SqlConnection("Server=MRKHEDUT;Initial Catalog=CI Platform;Trusted_Connection=True;TrustServerCertificate=True;");
+            if (_db.Users.Any(u=> u.Email == objLogin.Email && u.Password == objLogin.Password)) 
+            { return RedirectToAction("MissionGrid", "Home"); }
+            return RedirectToAction("Login", "User");
 
-            SqlCommand com = new SqlCommand("PR_User_SelectByUserNamePassword", objConn);
-            objConn.Open();
-                com.CommandType = CommandType.StoredProcedure;
-                com.Parameters.AddWithValue("@Email", objLogin.Email);
-                com.Parameters.AddWithValue("@Password", objLogin.Password);
-                com.ExecuteNonQuery();
-                objConn.Close();
-                return RedirectToAction("Index","Admin");
-            
+          
         }
 
         public IActionResult Register()
@@ -49,7 +43,20 @@ namespace CIPlatform.Controllers
             return View();
         }
 
-        public ActionResult ForgotPassword()
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult ForgotPassword(User objPass)
+        {
+            if (_db.Users.Any(u => u.Email == objPass.Email))
+            { return RedirectToAction("ResetPassword", "User"); }
+            return View();
+        }
+
+        public IActionResult ResetPassword()
         {
             return View();
         }
@@ -61,7 +68,7 @@ namespace CIPlatform.Controllers
         {
             if (objUser.Password == objUser.ConfirmPassword)
             {
-                _db.User.Add(objUser);
+                _db.Users.Add(objUser);
                 _db.SaveChanges();
                 return RedirectToAction("MissionGrid", "Home");
             }

@@ -7,16 +7,16 @@ namespace CIPlatform.Controllers
 {
     public class AdminController : Controller
     {
-        private readonly ApplicationDbContext _db;
+        private readonly CiPlatformContext _db;
 
-        public AdminController(ApplicationDbContext db)
+        public AdminController(CiPlatformContext db)
         {
             _db = db;
         }
 
         public IActionResult Index()
         {
-            IEnumerable<Admin> objAdminList = _db.Admin;
+            IEnumerable<Admin> objAdminList = _db.Admins;
             return View(objAdminList);
         }
 
@@ -25,7 +25,7 @@ namespace CIPlatform.Controllers
 
         public IActionResult Register(Admin objAdmin)
         {
-            _db.Admin.Add(objAdmin);
+            _db.Admins.Add(objAdmin);
             _db.SaveChanges();
             return RedirectToAction("Index","Admin");
         }

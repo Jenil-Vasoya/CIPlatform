@@ -1,62 +1,82 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CIPlatform.Models
+namespace CIPlatform.Models;
+
+public partial class User
 {
-    public class User
-    {
-        [Key]
-        public Int64 UserID { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+    [Key]
+    public long UserId { get; set; }
 
-        [Required]
-        public string Email { get; set; }
-        [Required]
-        public string Password { get; set; }
+    public string? FirstName { get; set; }
 
-        [NotMapped] // Does not effect with your database
-        [Compare("Password")]
-        public string ConfirmPassword { get; set; }
+    public string? LastName { get; set; }
 
-        public int PhoneNumber {get; set; }
+    [Required]
+    public string Email { get; set; } = null!;
 
-        public string Avatar { get; set; }
+    [Required]
+    public string Password { get; set; } = null!;
 
-        public string WhyIVolunteer { get; set; }
+    [NotMapped] // Does not effect with your database
+    [Compare("Password")]
+    public string ConfirmPassword { get; set; }
 
-        public string EmployeeID { get; set; }
+    public int PhoneNumber { get; set; }
 
-        public string Department { get; set; }
+    public string? Avatar { get; set; }
 
-        public Int64 CityID {
-            get { return 1; }
-            set
-            {
-                this.CityID = 1;
-            } }
+    public string? WhyIvolunteer { get; set; }
 
-        public Int64 CountryID
-        {
-            get { return 1; }
-            set
-            {
-                this.CountryID = 1;
-            }
-        }
+    public string? EmployeeId { get; set; }
 
-        public string ProfileText { get; set; }
+    public string? Department { get; set; }
 
-        public string LinkedInUrl { get; set; }
-        public string Title { get; set; }
-        public bool Status { get; set; }
+    public long? CityId { get; set; }
+    //{
+    //    get { return 1; }
+    //    set
+    //    {
+    //        this.CityId = 1;
+    //    }
+    //}
+
+    public long? CountryId { get; set; }
 
 
+    public string? ProfileText { get; set; }
 
-        public DateTime CreatedAt { get; set; } 
-        public DateTime UpdatedAt { get; set; } 
-        public DateTime DeletedAt { get; set; } 
+    public string? LinkedInUrl { get; set; }
 
+    public string? Title { get; set; }
 
-    }
+    public bool? Status { get; set; }
+
+    public DateTime CreatedAt { get; set; }
+
+    public DateTime? UpdatedAt { get; set; }
+
+    public DateTime? DeletedAt { get; set; }
+
+    public virtual City? City { get; set; }
+
+    public virtual ICollection<Comment> Comments { get; } = new List<Comment>();
+
+    public virtual Country? Country { get; set; }
+
+    public virtual ICollection<FavoriteMission> FavoriteMissions { get; } = new List<FavoriteMission>();
+
+    public virtual ICollection<MissionApplication> MissionApplications { get; } = new List<MissionApplication>();
+
+    public virtual ICollection<MissionInvite> MissionInvites { get; } = new List<MissionInvite>();
+
+    public virtual ICollection<MissionRating> MissionRatings { get; } = new List<MissionRating>();
+
+    public virtual ICollection<Story> Stories { get; } = new List<Story>();
+
+    public virtual ICollection<TimeSheet> TimeSheets { get; } = new List<TimeSheet>();
+
+    public virtual ICollection<UserSkill> UserSkills { get; } = new List<UserSkill>();
 }
